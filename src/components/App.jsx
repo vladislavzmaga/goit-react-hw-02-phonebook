@@ -75,16 +75,18 @@ export class App extends Component {
         <Section title={'Phonebook'}>
           <Form onSubmit={this.addContact} />
         </Section>
-        <Section title={'Contacts'}>
-          <Filter
-            title={'Find contacts by name'}
-            searchByName={this.searchByName}
-          />
-          <ContactsList
-            contacts={filteredContacts}
-            deleteContact={this.deleteContact}
-          />
-        </Section>
+        {this.state.contacts.length > 0 && (
+          <Section title={'Contacts'}>
+            <Filter
+              title={'Find contacts by name'}
+              searchByName={this.searchByName}
+            />
+            <ContactsList
+              contacts={filteredContacts}
+              deleteContact={this.deleteContact}
+            />
+          </Section>
+        )}
       </Wrapper>
     );
   }
