@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Notiflix from 'notiflix';
 import { nanoid } from 'nanoid';
 import { Form } from './Form/Form';
 import { Wrapper } from './Box/Box';
@@ -13,6 +14,20 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const contactsString = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contactsString);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   addContact = contact => {
     contact.id = nanoid();
     this.setState(prevState => {
@@ -20,7 +35,11 @@ export class App extends Component {
       let updateContacts = [];
       prevState.contacts.forEach(({ name }) => {
         if (name.toLowerCase() === contact.name.toLowerCase()) {
-          alert(`${name} is already in contacts`);
+          Notiflix.Report.failure(
+            'Error',
+            `${name} is already in contacts`,
+            'close'
+          );
           isContains = true;
         }
       });

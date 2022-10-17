@@ -29,6 +29,7 @@ export const DeleteBtn = styled.button`
   height: 30px;
   border-radius: 5px;
   transition: transform 300ms;
+
   :hover {
     transform: scale(1.1);
     background-color: blueviolet;

@@ -6,10 +6,13 @@ export const ContactsList = ({ contacts, deleteContact }) => {
   return (
     <ContactList>
       {contacts.map(item => {
+        const { name, number, id } = item;
         return (
           <ContactsListItem
-            key={item.id}
-            item={item}
+            key={id}
+            name={name}
+            number={number}
+            id={id}
             deleteContact={deleteContact}
           />
         );
@@ -20,5 +23,5 @@ export const ContactsList = ({ contacts, deleteContact }) => {
 
 ContactsList.propTypes = {
   deleteContact: PropTypes.func.isRequired,
-  contacts: PropTypes.object.isRequired,
+  contacts: PropTypes.array.isRequired,
 };
