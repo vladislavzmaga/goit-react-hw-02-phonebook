@@ -55,7 +55,7 @@ export class Form extends Component {
             onChange={this.hundleChange}
           />
         </FormLable>
-        <FormButton type="submit">submit</FormButton>
+        <FormButton type="submit">Save contact</FormButton>
       </Forms>
     );
   }
